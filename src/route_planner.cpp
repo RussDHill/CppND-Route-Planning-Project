@@ -35,13 +35,11 @@ float RoutePlanner::CalculateHValue(RouteModel::Node const *node) {
 void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) {
     current_node->FindNeighbors();
     for (auto & node : current_node->neighbors) {
-        //if (!node->visited) {
             node->parent = current_node;
             node->h_value = CalculateHValue(node);
             node->g_value = current_node->g_value + current_node->distance(*node);
             node->visited = true;
             open_list.push_back(node);
-       // }
     }
 }
 
